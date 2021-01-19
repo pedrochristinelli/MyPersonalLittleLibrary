@@ -9,7 +9,6 @@ import adicionarautor from './Views/AdicionarAutor';
 import adicionarlivro from './Views/AdicionarLivro';
 import listarautores from './Views/ListarAutores';
 import listarlivros from './Views/ListarLivros';
-import test from './Views/test';
 
 //Criar o componentes com as rotas
 function Routes(){
@@ -22,7 +21,6 @@ function Routes(){
                 <Route path="/adicionarlivro" component={adicionarlivro} />
                 <Route path="/listarautores" component={listarautores} />
                 <Route path="/listarlivros" component={listarlivros} />
-                <Route path="/test" component={test} />
             </Switch>        
         </BrowserRouter>
     );
