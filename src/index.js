@@ -2,12 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './Css/index.css';
 import Home from './Views/Home';
-import Nav from './Views/Nav';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Nav />
     <Home />
   </React.StrictMode>,
   document.getElementById('root')
