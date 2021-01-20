@@ -11,17 +11,22 @@ export default class FormLivro extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios({
-            method: 'post',
-            url: 'http://localhost:8080/api/addUmAutor',
+        axios.post('http://localhost:8080/api/addUmAutor', {nome: this.state.nome}, {
             headers: {
-             'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             params: {
                 nome: this.state.nome
+            },
+            body: {
+                nome: this.state.nome
             }
-        });
-        window.location.href='/listarautores'
+        })
+        .then(res => {
+            if(res.data.status === "Success"){
+                window.location.href='/listarautores'
+            }
+        })
     }
 
     handleTextChange(event) {

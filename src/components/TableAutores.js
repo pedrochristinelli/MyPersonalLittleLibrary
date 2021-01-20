@@ -19,7 +19,9 @@ export default class TableAutores extends Component {
         this.refresh()
     }
 
-    editAutor(id){}
+    editAutor(id){
+        window.location.href = '/editarautor?id='+id
+    }
 
     removeAutor(id){
         axios({
@@ -32,6 +34,7 @@ export default class TableAutores extends Component {
                 id: id
             }
         });
+        this.refresh();
     }
 
     

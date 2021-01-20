@@ -5,8 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Css/App.css';
 import '../Css/Home.css';
 
-
 class NavHome extends Component {
+  deslogar(){
+    sessionStorage.clear();
+    window.location.href="/";
+  }
   render() {
     return (
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,9 +36,7 @@ class NavHome extends Component {
                         <a class="nav-link" href="/adicionarautor">Adicionar Autor</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Deslogar</button>
-                </form>
+                <button class="btn btn-outline-danger my-2 my-sm-0" onClick={ this.deslogar }>Deslogar</button>
             </div>
         </nav> 
     );

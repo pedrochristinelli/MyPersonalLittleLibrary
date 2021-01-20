@@ -2,9 +2,9 @@ import '../Css/App.css';
 import '../Css/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavUser from '../components/NavUser';
-import logo from '../Assets/logo.png';
+import FormEditAutor from '../components/FormEditAutor';
 
-function User() {   
+function User() {
     //Impede pessoas não logadas entrarem
     if (sessionStorage.getItem('user') == null) {
         window.location.href="/";
@@ -13,12 +13,13 @@ function User() {
         <body>
             <NavUser />
             <center>
-            <br />
-            <h1><b class="tittleMPLL">My Personal Little Library</b></h1>
-            <br />
-            <img src={logo} alt="logo" />
-            <h2><b class="tittleMPLL">O seu organizador pessoal de livros</b></h2>
-            </center>
+                <br />
+                <h1 class="textPurple">Editar Autor</h1>
+                <br />
+                <div class="col-lg-4 my-auto">
+                    <FormEditAutor />
+                </div>    
+            </center>     
         </body>
     );
 }

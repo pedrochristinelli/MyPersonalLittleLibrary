@@ -1,6 +1,7 @@
 //App component
 import React, { Component } from 'react';
 import Modal, { ModalHeader, ModalBody, ModalFooter } from './Modal';
+import axios from 'axios';
 import logo from '../Assets/logo.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Css/App.css';
@@ -14,10 +15,48 @@ class NavHome extends Component {
       modal: false
     };
     this.toggle = this.toggle.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTextChange = this.handleTextChange.bind(this);
+    this.state = {username: '', password: '', message: ''};
   }
 
   toggle() {
     this.setState({ modal: !this.state.modal });
+  }
+
+  handleSubmit(event) {   
+    event.preventDefault();
+    axios.post('http://localhost:8080/api/login', {username: this.state.username, password: this.state.password}, {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        params: {
+          username: this.state.username,
+          password: this.state.password
+        }
+    })
+    .then(res => {
+        if(res.data.status === "Success"){
+            sessionStorage.setItem('user', JSON.stringify({'user': this.state.username, 'status': 'logado'}));
+            window.location.href='/home';
+        }
+    })
+    .catch((err) => {
+        this.setState({ message: "Usuário ou senha inválidos" });
+    });
+  }
+
+  handleTextChange(event) {
+    switch (event.target.name) {
+        case "usuario":
+            this.setState({username: event.target.value});
+            break; 
+        case "senha":
+            this.setState({password: event.target.value});
+            break;
+        default:
+            break;
+    }
   }
 
   render() {
@@ -65,19 +104,20 @@ class NavHome extends Component {
             </button>
           </ModalHeader>
           <ModalBody>
-            <form method="POST" action="">
+            <form onSubmit={this.handleSubmit}>
               <div>
                 <div class="form-group">
-                  <input type="text" class="form-control" id="usernameInput" aria-describedby="emailHelp" placeholder="Usuário" />
+                  <input type="text" class="form-control" id="usernameInput" name="usuario" aria-describedby="emailHelp" onChange={ this.handleTextChange } placeholder="Usuário" />
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" id="passwordInput" placeholder="Senha" />
+                  <input type="password" class="form-control" id="passwordInput" name="senha" onChange={ this.handleTextChange } placeholder="Senha" />
                 </div>
                 <button type="submit" class="btn btn-outline-secondary">Logar</button>
               </div>
-            </form>
+            </form> 
           </ModalBody>
           <ModalFooter>
+            <b class="messageError">{this.state.message}</b>
           </ModalFooter>
         </Modal>
       </div>

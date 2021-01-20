@@ -24,7 +24,7 @@ export default class TableLivros extends Component {
     }
 
     editaLivro(id){
-
+        window.location.href = '/editarlivro?id='+id
     }
 
     removeLivro(id){
@@ -38,6 +38,7 @@ export default class TableLivros extends Component {
                 id: id
             }
         });
+        this.refresh();
     }
     
     render() {

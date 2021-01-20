@@ -1324,3 +1324,7 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
 .textPurple{
     color: #48486e;
 }
+
+.messageError{
+  color: red;
+}

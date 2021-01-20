@@ -5,6 +5,10 @@ import NavUser from '../components/NavUser';
 import FormLivro from '../components/FormLivro';
 
 function User() {
+    //Impede pessoas não logadas entrarem
+    if (sessionStorage.getItem('user') == null) {
+        window.location.href="/";
+    }
     return (
         <body>
             <NavUser />

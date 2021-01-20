@@ -9,6 +9,8 @@ import adicionarautor from './Views/AdicionarAutor';
 import adicionarlivro from './Views/AdicionarLivro';
 import listarautores from './Views/ListarAutores';
 import listarlivros from './Views/ListarLivros';
+import editarautor from './Views/EditarAutor';
+import editarlivro from './Views/EditarLivro';
 
 //Criar o componentes com as rotas
 function Routes(){
@@ -21,6 +23,8 @@ function Routes(){
                 <Route path="/adicionarlivro" component={adicionarlivro} />
                 <Route path="/listarautores" component={listarautores} />
                 <Route path="/listarlivros" component={listarlivros} />
+                <Route path="/editarautor" component={editarautor} />
+                <Route path="/editarlivro" component={editarlivro} />
             </Switch>        
         </BrowserRouter>
     );
