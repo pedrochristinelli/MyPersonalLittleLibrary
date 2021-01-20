@@ -25,7 +25,10 @@ export default class TableAutores extends Component {
         axios({
             method: 'post',
             url: 'http://localhost:8080/api/removeAutor',
-            data: {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            params: {
                 id: id
             }
         });

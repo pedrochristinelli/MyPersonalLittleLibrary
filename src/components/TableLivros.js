@@ -31,7 +31,10 @@ export default class TableLivros extends Component {
         axios({
             method: 'post',
             url: 'http://localhost:8080/api/removeLivro',
-            data: {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            params: {
                 id: id
             }
         });

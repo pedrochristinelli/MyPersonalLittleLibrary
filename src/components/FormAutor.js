@@ -14,10 +14,14 @@ export default class FormLivro extends Component {
         axios({
             method: 'post',
             url: 'http://localhost:8080/api/addUmAutor',
-            data: {
+            headers: {
+             'Content-Type': 'application/json'
+            },
+            params: {
                 nome: this.state.nome
             }
         });
+        window.location.href='/listarautores'
     }
 
     handleTextChange(event) {
@@ -37,7 +41,7 @@ export default class FormLivro extends Component {
                     <div class="form-group">
                         <input type="text" class="form-control" id="nomeInput" name="nome" onChange={ this.handleTextChange } aria-describedby="NomeAutor" placeholder="Nome Autor" required/>
                     </div>
-                    <button type="submit" class="btn btn-outline-secondary">Adicionar</button>
+                    <button type="submit" class="btn btn-outline-secondary" >Adicionar</button>
                 </div>
             </form>
         ) 

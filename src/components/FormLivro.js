@@ -25,13 +25,17 @@ export default class FormLivro extends Component {
         axios({
             method: 'post',
             url: 'http://localhost:8080/api/addUmLivro',
-            data: {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            params: {
                 nome: this.state.nome,
                 genero: this.state.genero,
                 pages: this.state.pages,
                 autor: this.state.autor
             }
         });
+        window.location.href='/listarlivros'
     }
 
     handleTextChange(event) {
