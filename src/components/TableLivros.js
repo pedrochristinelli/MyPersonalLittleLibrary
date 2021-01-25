@@ -5,12 +5,15 @@ import axios from 'axios';
 export default class TableLivros extends Component {
     constructor(props) {
         super(props);
-        this.state = { listaItens: [] }
+        this.state = { listaItens: [], listaAutores: [] }
         this.refresh = this.refresh.bind(this);
     }
     
     refresh() {       
+        //Id do usuário
         var userid = JSON.parse(sessionStorage.getItem('user')).userid;
+
+        //Pega os livros
         axios.post('http://localhost:8080/api/allLivro', {userid: userid}, {
             headers: {
                 'Content-Type': 'application/json'
@@ -66,7 +69,8 @@ export default class TableLivros extends Component {
                             <td>{item.nome}</td>
                             <td>{item.genero}</td>
                             <td>{item.pages}</td>
-                            <td>{item.autor}</td>
+                            <td>{item.autor}
+                            </td>
                             <td><button onClick={() => this.editaLivro(item.id)} class="btn btn-outline-success">Editar</button> <button onClick={() => this.removeLivro(item.id)} class="btn btn-outline-danger">Remover</button></td>
                         </tr>
                     ))}

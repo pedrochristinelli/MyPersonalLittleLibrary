@@ -35,7 +35,8 @@ export default class FormLivro extends Component {
         })
         .then(res => {
             if(res.data.status === "Success"){
-                sessionStorage.setItem('user', JSON.stringify({'user': this.state.username, 'status': 'logado'}));
+                console.log(res);
+                sessionStorage.setItem('user', JSON.stringify({'user': this.state.username, 'userid': res.data.data[0].id, 'status': 'logado'}));
                 window.location.href='/home';
             }
         })
