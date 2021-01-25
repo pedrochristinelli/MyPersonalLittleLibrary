@@ -22,6 +22,7 @@ export default class FormLivro extends Component {
         })
         .then(res => {
             this.setState({listaItens: res.data.data});
+            this.setState({autor: res.data.data[0].id});
         })
     }
     
