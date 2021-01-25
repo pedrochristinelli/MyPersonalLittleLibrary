@@ -10,9 +10,18 @@ export default class TableAutores extends Component {
     }
     
     refresh() {
-        axios.get("http://localhost:8080/api/allAutor")
-        .then(response => { this.setState({ listaItens: response.data}); })
-        .catch((error) => { console.log('Erro ao recuperar os dados: '+error); }); 
+        var userid = JSON.parse(sessionStorage.getItem('user')).userid;
+        axios.post('http://localhost:8080/api/allAutor', {userid: userid}, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            params: {
+                userid: userid,
+            }
+        })
+        .then(res => {
+            this.setState({listaItens: res.data.data});
+        })
     }
     
     componentDidMount() {

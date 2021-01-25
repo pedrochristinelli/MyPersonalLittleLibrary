@@ -11,9 +11,18 @@ export default class FormLivro extends Component {
     }
 
     refresh() {
-        axios.get("http://localhost:8080/api/allAutor")
-        .then(response => { this.setState({ listaItens: response.data}); })
-        .catch((error) => { console.log('Erro ao recuperar os dados: '+error); }); 
+        var userid = JSON.parse(sessionStorage.getItem('user')).userid;
+        axios.post('http://localhost:8080/api/allAutor', {userid: userid}, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            params: {
+                userid: userid,
+            }
+        })
+        .then(res => {
+            this.setState({listaItens: res.data.data});
+        })
     }
     
     componentDidMount() {
@@ -22,7 +31,8 @@ export default class FormLivro extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios.post('http://localhost:8080/api/addUmLivro', {nome: this.state.nome, genero: this.state.genero, pages: this.state.pages, autor: this.state.autor}, {
+        var userid = JSON.parse(sessionStorage.getItem('user')).userid;
+        axios.post('http://localhost:8080/api/addUmLivro', {nome: this.state.nome, genero: this.state.genero, pages: this.state.pages, autor: this.state.autor, userid: userid}, {
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -30,7 +40,8 @@ export default class FormLivro extends Component {
                 nome: this.state.nome,
                 genero: this.state.genero,
                 pages: this.state.pages,
-                autor: this.state.autor
+                autor: this.state.autor,
+                userid: userid
             }
         })
         .then(res => {

@@ -11,15 +11,18 @@ export default class FormLivro extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios.post('http://localhost:8080/api/addUmAutor', {nome: this.state.nome}, {
+        var userid = JSON.parse(sessionStorage.getItem('user')).userid;
+        axios.post('http://localhost:8080/api/addUmAutor', {nome: this.state.nome, userid: userid}, {
             headers: {
                 'Content-Type': 'application/json'
             },
             params: {
-                nome: this.state.nome
+                nome: this.state.nome,
+                userid: userid
             },
             body: {
-                nome: this.state.nome
+                nome: this.state.nome,
+                userid: userid
             }
         })
         .then(res => {

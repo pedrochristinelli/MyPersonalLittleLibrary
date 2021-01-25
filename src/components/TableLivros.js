@@ -9,14 +9,19 @@ export default class TableLivros extends Component {
         this.refresh = this.refresh.bind(this);
     }
     
-    refresh() {
-        axios.get("http://localhost:8080/api/allLivro")
-        .then(response => { this.setState({ listaItens: response.data}); })
-        .catch((error) => { console.log('Erro ao recuperar os dados: '+error); }); 
-
-        axios.get("http://localhost:8080/api/allAutor")
-        .then(response => { this.setState({ autoresList: response.data}); })
-        .catch((error) => { console.log('Erro ao recuperar os dados: '+error); }); 
+    refresh() {       
+        var userid = JSON.parse(sessionStorage.getItem('user')).userid;
+        axios.post('http://localhost:8080/api/allLivro', {userid: userid}, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            params: {
+                userid: userid,
+            }
+        })
+        .then(res => {
+            this.setState({listaItens: res.data.data});
+        })
     }
     
     componentDidMount() {

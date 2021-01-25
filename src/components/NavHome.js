@@ -37,7 +37,7 @@ class NavHome extends Component {
     })
     .then(res => {
         if(res.data.status === "Success"){
-            sessionStorage.setItem('user', JSON.stringify({'user': this.state.username, 'status': 'logado'}));
+            sessionStorage.setItem('user', JSON.stringify({'user': this.state.username, 'userid': res.data.data[0].id, 'status': 'logado'}));
             window.location.href='/home';
         }
     })
